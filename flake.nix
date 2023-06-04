@@ -16,16 +16,17 @@
         pkgs = import nixpkgs {
 					inherit system;
 				};
+        lib = nixpkgs.lib;
 				rust_toolchain = fenix.packages.${system}.stable.toolchain;
         manifest = (pkgs.lib.importTOML ./Cargo.toml).package;
 
         rsBuild = pkgs.rustPlatform.buildRustPackage rec {
           pname = "daft";
-          version = "0.1.0";
+          version = "0.1.1";
           src = ./.;
 
-          cargoLock.lockFile = ./Cargo.lock;
-
+#          cargoLock.lockFile = ./Cargo.lock;
+          cargoHash = "sha256-M/k5HSDA9A95YjX35+uMmJpYGff/TSYYh+ueZ4hADQw=";
           postPatch = ''cp ${./Cargo.lock} Cargo.lock'';
         };
       in {
