@@ -24,6 +24,8 @@
           version = manifest.version;
           cargoLock.lockFile = ./Cargo.lock;
           src = pkgs.lib.cleanSource ./.;
+
+          postPatch = ''cp ${./Cargo.lock} Cargo.lock'';
         };
       in {
         devShell = pkgs.mkShell {
