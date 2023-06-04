@@ -31,6 +31,11 @@
 						rust_toolchain
 					];
 				};
+
         defaultPackage = rsBuild;
+
+        packages = {
+          default = rsBuild;
+        };
       });
 }
