@@ -20,10 +20,11 @@
         manifest = (pkgs.lib.importTOML ./Cargo.toml).package;
 
         rsBuild = pkgs.rustPlatform.buildRustPackage rec {
-          pname = manifest.name;
-          version = manifest.version;
+          pname = "daft";
+          version = "0.1.0";
+          src = ./.;
+
           cargoLock.lockFile = ./Cargo.lock;
-          src = pkgs.lib.cleanSource ./.;
 
           postPatch = ''cp ${./Cargo.lock} Cargo.lock'';
         };
